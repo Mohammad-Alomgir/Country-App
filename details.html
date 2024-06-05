@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>this is details page</title>
+    <!-- Google font link -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito:300,600,800"
+      rel="stylesheet"
+    />
+    <!-- Font awsome cdn link -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="country.css" />
+  </head>
+  <body class="hello">
+    <header class="header-area">
+      <div class="layout-container">
+        <div class="header-content">
+          <h2 class="title">Where is the Country?</h2>
+          <p>
+            <i class="fa-regular fa-moon"></i>&nbsp;&nbsp; <span class="theme-changer"> Dark mode</span>
+          </p>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="layout-container">
+        <div class="main-header">
+          <div class="back-button">
+            <button type="button" onclick="window.history.back()">Back</button>
+          </div>
+        </div>
+        <div class="loading active">
+          <p>Loading...</p>
+        </div>
+        <div class="show-country-details"></div>
+      </div>
+    </main>
+    <script src="country.js"></script>
+    <script>
+        const themeChanger = document.querySelector(".theme-changer");
+      console.log(document.body);
+      document.body.classList.add(localStorage.getItem("theme").toString());
+      document.querySelector(".theme-changer").innerText = localStorage.getItem("theme-text")
+      //  change theme
+      themeChanger.addEventListener("click", (e) => {
+        const currentTheme = document.body.classList.contains("dark")
+          ? "light"
+          : "dark";
+        let themeText = currentTheme === "dark" ? "light mode" : "Dark mode"
+        // const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        // console.log(newTheme)
+        e.target.innerText = themeText;
+        document.body.classList.toggle("dark");
+        localStorage.setItem("theme", currentTheme);
+        localStorage.setItem("theme-text",themeText)
+      });
+    </script>
+  </body>
+</html>
